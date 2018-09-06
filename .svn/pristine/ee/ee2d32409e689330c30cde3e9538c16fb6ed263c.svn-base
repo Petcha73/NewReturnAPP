@@ -1,0 +1,332 @@
+
+<?php
+	
+	//connect to data base
+	
+	include 'connectDb.php';
+	include("config.php"); //include config file
+	
+	$recievedMessage = "";
+	$edit = isset($_POST['edit']) ? $mysqli->real_escape_string(htmlspecialchars($_POST['edit'])) : '';
+	
+	$query = "SELECT * FROM `$dbTable` WHERE `id`='$edit'";
+	
+	$result = $mysqli-> query($query);
+	
+	// get all data from database
+	if ($result->num_rows > 0) {
+		
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			
+			$id= $row["id"];
+			$ticket= $row["ticket"];
+			$email=$row["email"];
+			$adress=$row["adress"];
+			$order=$row["orderNum"];
+			$guarenty= $row["guarenty"];
+			$module= $row["module"];
+			$serial= $row["serial"];
+			$issue1=$row["issue1"];
+			$issue2=$row["issue2"];
+			$issue3=$row["issue3"]; 
+			$remark=$row["remark"];
+			$agent=$row["agent"];
+			$technicien= $row["technicien"];
+			$complete= $row["complete"];   
+			$observation=$row["observation"];
+			$correction=$row["correction"];
+			$solution= $row["solution"];
+			$commentry=$row["commentry"];
+			$dateSetup= $row["dateSetup"];
+			$dateReturn=$row["dateReturn"];
+			$dateIn=$row["dateIn"];
+			$dateRepair=$row["dateRepair"];
+			$dateOut=$row["dateOut"];
+			$trackIn=$row["trackIn"];
+			$trackOut=$row["trackOut"];
+			$status=$row["status"];
+			
+		}
+	} 
+	else {
+		echo $result->num_rows;
+		
+	}
+	
+	
+	include("header.php");
+	
+	
+	
+	$recievedMessage = "yes we recived your parcel on $dateIn";
+	
+	
+?>
+
+<body class="backG" >
+	
+	
+	<form class="myForm" id="edit" action="editReturnPrintDb.php" method="post">
+		
+		
+		
+		<input type="hidden" name="id" value="<?= $id ?>">
+		<h2>
+			
+			<label>#<?= $id ?></label>
+			Edit Return 
+			
+			<span>Please fill all the fields</span>
+			
+		</h2>
+		
+		<div class="colone">
+			
+			<label>
+				<span>Status :</span>
+				<select id="status"name="status" >
+					
+					<?php
+						foreach($statusList as $value):
+						echo'<option'; if($status==$value){ 
+						echo' selected="selected" '; } 
+						echo' value="'.$value.'">'.$value.'</option>';
+						endforeach;
+					?>
+					
+				</select>
+			</label> 
+			
+			
+			<div id="saveChange">
+				<span>&nbsp;</span>
+				<input class="button" type="submit" value="Save Changes">
+				<input class="button" type="button" value="Cancel"  onClick="history.go(-1)">
+			</div>
+			
+			<hr id="myHr">
+			
+			
+			
+			
+			<label>
+				<span>Client Ticket :</span>
+				<input  name="ticket" type="text" value="<?= $ticket ?>" required>
+			</label>
+			
+			<img  onclick="" src="img/live.png" style="height: 28px;	width: 28px; opacity:0.7; padding:1px; position:relative; bottom:-10px;">
+			
+			<label>
+				<span>Client E-mail :</span>
+				<input name="email" type="email" value="<?= $email ?>" required>
+			</label>
+			<img  onclick="sendMailOut()" src="img/mail.png" style="height: 25px;	width: 25px; opacity:0.7; padding:1px; position:relative; bottom:-10px;">
+			<label>
+				<span>Client Adress-Tel :</span>
+				<textarea name="adress" type="text" ><?=$adress ?> </textarea>
+			</label>
+			<img  onclick="" src="img/ups.gif" style="height: 25px;	width: 25px; opacity:0.7; padding:1px; position:relative; bottom:60px;">
+			
+			
+			<label>
+				<span>Order Number :</span>
+				<input  name="orderNum" type="text" value="<?= $order ?>" required>
+			</label>
+			<img  onclick="" src="img/colisimo.jpg" style="height: 32px;	width: 32px; opacity:0.7; padding:1px; position:relative; bottom:50px;">
+			<label>
+				<span>Setup Date :</span>
+				<input  name="dateSetup" type="date" value="<?= $dateSetup ?>" required>
+			</label>
+			
+			<label>
+				<span>Under Guarenty :</span>
+				<input  name="guarenty" type="text" value="<?= $guarenty ?>" required>
+			</label>
+			
+			<label>
+				<span>Module :</span>
+				<input  name="module" type="text" value="<?= $module ?>" required>
+			</label>
+			
+			<label>
+				<span>Serial :</span>
+				<input  name="serial" type="text" value="<?= $serial ?>" required>
+			</label>
+			
+			<label>
+				<span>Issue :</span>
+				
+				<input  name="issue1" type="text" value="<?= $issue1 ?>" required>
+				
+				<?php
+					if ($issue2!=""){
+						echo'<span>2nd Issue :</span>';
+						echo'<input  name="issue2" type="text" value="'.$issue2.'" >';						
+					}
+					if ($issue3!=""){
+						echo'<span>3rd Issue :</span>';
+						echo'<input  name="issue3" type="text" value="'.$issue3.'" >';				
+					}
+					
+				?>
+				
+				
+			</label>
+			
+			<label>
+				<span>Return Date :</span>
+				<input  name="dateReturn" type="date" value="<?= $dateReturn ?>" required>
+			</label>
+			
+			<label>
+				<span>Track In :</span>
+				<input  name="trackIn" type="text" value="<?= $trackIn ?>" required>
+			</label>
+			
+			<label>
+				<span>Agent :</span>
+				<input name="agent" type="text" value="<?= $agent ?>" required>
+			</label>
+			
+			
+			
+			
+			
+			
+			
+			
+		</div>
+		
+		<div class="colone">
+			
+			
+			
+			<label>
+				
+				<span>Complete :</span>
+				<select class="reparationI" name="complete" >
+					<option selected disabled value="">Please select</option>
+					<option <?php if($complete=="yes"){ ?> selected="selected"<?php ; } ?> value="yes">yes</option>
+					<option <?php if($complete=="no"){ ?> selected="selected"<?php ; } ?> value="no">no</option>
+				</select>
+			</label>
+			
+			<label>
+				<span>Observation :</span>
+				<textarea    name="observation" type="text" ><?=$observation ?></textarea>
+			</label>
+			
+			<label>
+				<span>Correction :</span>
+				<textarea class="reparationI"  name="correction" type="text" ><?=$correction ?> </textarea>
+			</label>
+			<img  onclick="showHelp()" src="img/help.png" style="height: 32px;	width: 32px; opacity:0.7; padding:1px; position:relative; bottom:55px;">
+			
+			<label>
+				<span>Solution :</span>
+				<select class="reparationI" name="solution" >
+					<option selected disabled value="">Please select</option>
+					
+					<?php
+						foreach($solutionList as $value):
+						echo'<option'; if($solution==$value){ 
+						echo' selected="selected" '; } 
+						echo' value="'.$value.'">'.$value.'</option>';
+						endforeach;
+					?>
+					
+				</select>
+			</label>
+			
+			<label>
+				<span>Remark :</span>
+				<input  name="remark" type="text" value="<?=$remark ?>">
+			</label>
+			
+			<label>
+				<span>Commentry :</span>
+				<textarea    name="commentry" type="text" ><?=$commentry ?></textarea>
+			</label>
+			
+			
+			
+			
+			<label>
+				<span>Date Repair :</span>
+				<input  class="shipmentI" name="dateRepair" type="date" value="<?= $dateRepair ?>" >
+			</label>
+			
+			<label>
+				<span>Technicien :</span>
+				<select class="reparationI" name="technicien" >
+					<option selected disabled value="">Please select</option>
+					
+					<?php
+						foreach($technicienList as $value):
+						echo'<option'; if($technicien==$value){ 
+						echo' selected="selected" '; } 
+						echo' value="'.$value.'">'.$value.'</option>';
+						endforeach;
+					?>
+					
+				</select>
+			</label>
+			
+			<hr id="myHr">
+			
+			<label >
+				<span>Date In :</span>
+				<input  class="receptionI" name="dateIn" type="date" value="<?= $dateIn ?>">
+				
+			</label>
+			
+			
+			<img  onclick="sendMailIn()" src="img/mail.png" style="height: 25px;	width: 25px; opacity:0.7; padding:1px; position:relative; bottom:-10px;">
+			
+			<label>
+				<span>Track Out :</span>
+				<input class="shipmentI" name="trackOut" type="text" value="<?= $trackOut ?>"  >
+			</label>
+			
+			<img  onclick="sendMailOut()" src="img/mail.png" style="height: 25px;	width: 25px; opacity:0.7; padding:1px; position:relative; bottom:-10px;">
+			
+			<label>
+				<span>Date Out :</span>
+				<input  class="shipmentI" name="dateOut" type="date" value="<?= $dateOut ?>" >
+			</label>
+			
+			
+			
+			
+			
+			
+		</div>
+		
+		
+	</form>
+	
+	<script>
+		
+		var email= "<?php echo $email ?>";
+		var body="<?php echo $recievedMessage ?>";
+		
+		function showHelp(){
+			window.open("pdf/main_chauffe.pdf");
+		}
+		
+		function sendMailIn(){
+			window.open('mailto:'+email+'?subject=Recieved&body='+body+'');
+			
+		}
+		
+		function sendMailOut(){
+			window.open('mailto:'+email+'?subject=Recieved&body='+body+'');
+			
+		}
+		
+	</script>
+	
+	
+</body>
+</html>

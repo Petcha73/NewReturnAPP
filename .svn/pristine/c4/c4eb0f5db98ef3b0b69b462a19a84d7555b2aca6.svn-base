@@ -1,0 +1,226 @@
+<?php
+	
+	$dbTable = "return3"; 
+	$numberOfIssues = 3;
+	
+	$webAdress=Array(
+	
+	"ip" => "192.168.128.27",
+	"dir" => "sav"	
+		
+		);
+	
+	$technicienList = array
+	(
+	
+	"Adrian",
+	"Axel",
+	"Brieuc",
+	"Clément",
+	"Guillaume",
+	"Kevin",
+	"Prashanth",
+	"Sendy"
+		
+	);
+	
+	$solutionList = array
+	(
+	
+	"Repaired",
+	"Returned",
+	"Swapped(new)",
+	"Swapped(ref)"
+	
+	);
+	
+	$statusList = array
+	(
+	
+	"Waiting",
+	"Canceled",
+	"Reception",
+	"Refunded",
+	"Reparation",
+	"To Ship",
+	"Pre-sent",
+	"Done"
+		
+	);			
+	
+	$issueList = array
+	(
+	
+	"station" => "nwsIssues",
+	"thermostat" => "nthIssues",
+	"rain" => "nrgIssues",
+	"wind" => "nwgIssues",
+	"june" => "njbIssues",
+	"welcome" => "nscIssues"
+	
+	);
+	
+	$months = array
+	(
+	
+	"1" => "January",
+	"2" => "February",
+	"3" => "March",
+	"4" => "April",
+	"5" => "May",
+	"6" => "June",
+	"7" => "July",
+	"8" => "August",
+	"9" => "September",
+	"10" => "October",
+	"11" => "November",
+	"12" => "December"
+	
+	);
+	
+	$moduleTypes = array
+	(
+	
+	"NWS" => "Weather station",
+	"NMM" => "Indoor unit",
+	"NOM" => "Outdoor unit",
+	"NIM" => "Additional Indoor unit",
+	"NRG" => "Rain Gauge",
+	"NWG" => "Wind Gauge",
+	"NWM" => "Mount",
+	"NTH" => "Thermostat",
+	"TPG" => "TPG",
+	"THM" => "THM",
+	"NJB" => "June",
+	"NSC" => "Welcome",
+	"NDT" => "Tag"
+	
+	);
+	
+	
+	$agentName = array
+	(
+	
+	"Adrian",
+	"Ayaz",
+	"Alessandra",
+	"Bilal",
+	"Brieuc",
+	"Cédric",
+	"Clémence",
+	"Maxime",
+	"Nathalie",
+	"Prashanth",
+	"Sendy"
+		
+	);
+	
+	
+	$nwsIssues = array
+	(
+	
+	"Bleutooth",
+	"Co2",
+	"Dead",
+	"Energy",
+	"Humidity",
+	"Mechanical",
+	"Mesure",
+	"Pressure",
+	"Radio",
+	"Refund",
+	"Sono",
+	"Temperature",
+	"Touch",
+	"USB",
+	"Wifi"
+	
+	);
+	
+	$nthIssues = array
+	(
+	
+	"Buttons",
+	"cosmetic",
+	"Dead",
+	"Energy",
+	"LDO",
+	"Led",
+	"Mechanical",
+	"Pins",
+	"Power Supply",
+	"Radio",
+	"Refund",
+	"Screen",
+	"Switching Relay",
+	"Temperature",
+	"Wifi"
+	
+	);
+	
+	$nrgIssues = array
+	(
+	
+	"Battey Contact",
+	"Dead",
+	"Energy",
+	"Measure",
+	"Mechanical",
+	"Radio",
+	"Refund",
+	"Wifi"
+	
+	);
+	
+	$nwgIssues = array
+	(
+	
+	"Battey Contact",
+	"Dead",
+	"Energy",
+	"Measure",
+	"Mechanical",
+	"Radio",
+	"Refund",
+	"Wifi"
+	
+	);
+	
+	$njbIssues = array
+	(
+	
+	"Battey Contact",
+	"Dead",
+	"Energy",
+	"Measure",
+	"Mechanical",
+	"Radio",
+	"Refund",
+	"Wifi"
+	
+	);
+	
+	
+	$nscIssues = array
+	(
+	
+	"Bleutooth",
+	"Boot",
+	"Camera",
+	"Dead",
+	"Energy",
+	"Filter",
+	"InfraRed",
+	"Mechanical",
+	"Mic",
+	"Other",
+	"Radio",
+	"Refund",
+	"SDcard",
+	"Sound",
+	"Update",
+	"Wifi"
+	
+	);
+	
+?>
